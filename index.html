@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚡ Anime Pong - Ultimate Edition</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚡ ANIME PONG ⚡</h1>
+            <p class="subtitle">Feel the power of anime battles!</p>
+        </div>
+
+        <div class="game-info">
+            <div class="score-section">
+                <div class="player-info">
+                    <div class="player-name">YOU</div>
+                    <div class="score" id="playerScore">0</div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="player-info">
+                    <div class="player-name">AI</div>
+                    <div class="score" id="aiScore">0</div>
+                </div>
+            </div>
+
+            <div class="abilities-display">
+                <div class="ability-bar">
+                    <div class="ability-label">⚡ POWER:</div>
+                    <div class="power-meter">
+                        <div class="power-fill" id="powerMeter"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <canvas id="gameCanvas" width="1000" height="600"></canvas>
+
+        <div class="controls">
+            <div class="control-group">
+                <h3>PLAYER CONTROLS</h3>
+                <p>🖱️ Mouse Y Position - Paddle Movement</p>
+                <p>⬆️⬇️ Arrow Keys - Paddle Movement</p>
+                <p>SPACEBAR - Unleash Power Attack (when charged)</p>
+            </div>
+            <div class="control-group">
+                <h3>ABILITIES</h3>
+                <p>⚡ Speed Boost - Move faster temporarily</p>
+                <p>🌀 Spin Attack - Curve the ball trajectory</p>
+                <p>🛡️ Shield - Expand paddle size briefly</p>
+                <p>💥 Power Shot - Super fast ball strike</p>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <h3>HOW TO PLAY</h3>
+            <ul>
+                <li>Control your left paddle to bounce the ball back</li>
+                <li>First to 7 points wins!</li>
+                <li>Accumulate power by hitting the ball</li>
+                <li>Press SPACEBAR to activate a random special ability</li>
+                <li>Use anime strategy and timing to defeat the AI!</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
