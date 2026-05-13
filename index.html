@@ -7,10 +7,156 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <div class="header">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-container">
+            <div class="loading-logo">⚡ ANIME PONG ⚡</div>
+            <div class="loading-bar-container">
+                <div class="loading-bar"></div>
+            </div>
+            <div class="loading-text">Loading...</div>
+        </div>
+    </div>
+
+    <!-- Main Menu -->
+    <div id="mainMenu" class="menu-screen hidden">
+        <div class="menu-container">
+            <div class="menu-header">
+                <h1 class="menu-title">⚡ ANIME PONG ⚡</h1>
+                <p class="menu-subtitle">Feel the power of anime battles!</p>
+            </div>
+
+            <div class="menu-buttons">
+                <button class="menu-btn" id="playBtn">🎮 PLAY</button>
+                <button class="menu-btn" id="settingsBtn">⚙️ SETTINGS</button>
+                <button class="menu-btn" id="creditsBtn">📜 CREDITS</button>
+            </div>
+
+            <div class="menu-stats">
+                <div class="stat-box">
+                    <span class="stat-label">High Score:</span>
+                    <span class="stat-value" id="highScore">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Total Games:</span>
+                    <span class="stat-value" id="totalGames">0</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Win Rate:</span>
+                    <span class="stat-value" id="winRate">0%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Menu -->
+    <div id="settingsMenu" class="menu-screen hidden">
+        <div class="menu-container">
+            <div class="menu-header">
+                <h1 class="menu-title">⚙️ SETTINGS</h1>
+            </div>
+
+            <div class="settings-content">
+                <div class="settings-group">
+                    <label class="setting-label">🔊 Master Volume</label>
+                    <div class="slider-container">
+                        <input type="range" id="masterVolume" min="0" max="100" value="70" class="slider">
+                        <span class="volume-value" id="masterVolumeValue">70%</span>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <label class="setting-label">🎵 Music Volume</label>
+                    <div class="slider-container">
+                        <input type="range" id="musicVolume" min="0" max="100" value="50" class="slider">
+                        <span class="volume-value" id="musicVolumeValue">50%</span>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <label class="setting-label">🔔 SFX Volume</label>
+                    <div class="slider-container">
+                        <input type="range" id="sfxVolume" min="0" max="100" value="70" class="slider">
+                        <span class="volume-value" id="sfxVolumeValue">70%</span>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <label class="setting-label">🎮 Difficulty</label>
+                    <div class="difficulty-buttons">
+                        <button class="difficulty-btn" data-difficulty="easy">Easy</button>
+                        <button class="difficulty-btn active" data-difficulty="normal">Normal</button>
+                        <button class="difficulty-btn" data-difficulty="hard">Hard</button>
+                        <button class="difficulty-btn" data-difficulty="extreme">Extreme</button>
+                    </div>
+                </div>
+
+                <div class="settings-group">
+                    <label class="setting-label">✨ Visual Effects</label>
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="particleEffects" checked>
+                        <span class="checkbox-label">Particle Effects</span>
+                    </label>
+                </div>
+
+                <div class="settings-group">
+                    <label class="setting-label">⌨️ Control Mode</label>
+                    <div class="control-buttons">
+                        <button class="control-btn active" data-control="mouse">Mouse</button>
+                        <button class="control-btn" data-control="keyboard">Keyboard</button>
+                        <button class="control-btn" data-control="hybrid">Hybrid</button>
+                    </div>
+                </div>
+
+                <button class="menu-btn full-width" id="resetSettings">Reset to Default</button>
+            </div>
+
+            <button class="back-btn" id="backFromSettings">← BACK</button>
+        </div>
+    </div>
+
+    <!-- Credits Menu -->
+    <div id="creditsMenu" class="menu-screen hidden">
+        <div class="menu-container">
+            <div class="menu-header">
+                <h1 class="menu-title">📜 CREDITS</h1>
+            </div>
+
+            <div class="credits-content">
+                <div class="credits-section">
+                    <h3>DEVELOPMENT</h3>
+                    <p>wyzen-re</p>
+                </div>
+
+                <div class="credits-section">
+                    <h3>MUSIC & SFX</h3>
+                    <p>Generated with Web Audio API</p>
+                </div>
+
+                <div class="credits-section">
+                    <h3>TECHNOLOGIES</h3>
+                    <p>HTML5 Canvas • Vanilla JavaScript • CSS3</p>
+                </div>
+
+                <div class="credits-section">
+                    <h3>SPECIAL THANKS</h3>
+                    <p>All anime fans out there!</p>
+                </div>
+
+                <div class="credits-section">
+                    <h3>VERSION</h3>
+                    <p>1.0.0</p>
+                </div>
+            </div>
+
+            <button class="back-btn" id="backFromCredits">← BACK</button>
+        </div>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="gameScreen" class="game-container hidden">
+        <div class="game-header">
             <h1>⚡ ANIME PONG ⚡</h1>
-            <p class="subtitle">Feel the power of anime battles!</p>
         </div>
 
         <div class="game-info">
@@ -34,38 +180,80 @@
                     </div>
                 </div>
             </div>
+
+            <div class="difficulty-display">
+                <span id="difficultyText">Normal</span>
+            </div>
         </div>
 
         <canvas id="gameCanvas" width="1000" height="600"></canvas>
 
-        <div class="controls">
-            <div class="control-group">
-                <h3>PLAYER CONTROLS</h3>
-                <p>🖱️ Mouse Y Position - Paddle Movement</p>
-                <p>⬆️⬇️ Arrow Keys - Paddle Movement</p>
-                <p>SPACEBAR - Unleash Power Attack (when charged)</p>
-            </div>
-            <div class="control-group">
-                <h3>ABILITIES</h3>
-                <p>⚡ Speed Boost - Move faster temporarily</p>
-                <p>🌀 Spin Attack - Curve the ball trajectory</p>
-                <p>🛡️ Shield - Expand paddle size briefly</p>
-                <p>💥 Power Shot - Super fast ball strike</p>
+        <div class="game-controls-display">
+            <div class="control-hint">
+                <span id="controlHint">🖱️ MOUSE to move | SPACEBAR for ability</span>
             </div>
         </div>
 
-        <div class="instructions">
-            <h3>HOW TO PLAY</h3>
-            <ul>
-                <li>Control your left paddle to bounce the ball back</li>
-                <li>First to 7 points wins!</li>
-                <li>Accumulate power by hitting the ball</li>
-                <li>Press SPACEBAR to activate a random special ability</li>
-                <li>Use anime strategy and timing to defeat the AI!</li>
-            </ul>
+        <button class="pause-btn" id="pauseBtn">⏸️ PAUSE</button>
+    </div>
+
+    <!-- Pause Menu -->
+    <div id="pauseMenu" class="menu-screen hidden">
+        <div class="menu-container">
+            <div class="menu-header">
+                <h1 class="menu-title">⏸️ PAUSED</h1>
+            </div>
+
+            <div class="pause-score">
+                <div class="pause-stat">
+                    <span>You:</span>
+                    <span id="pausePlayerScore">0</span>
+                </div>
+                <div class="pause-stat">
+                    <span>AI:</span>
+                    <span id="pauseAiScore">0</span>
+                </div>
+            </div>
+
+            <div class="menu-buttons">
+                <button class="menu-btn" id="resumeBtn">▶️ RESUME</button>
+                <button class="menu-btn" id="settingsPauseBtn">⚙️ SETTINGS</button>
+                <button class="menu-btn" id="mainMenuBtn">🏠 MAIN MENU</button>
+            </div>
         </div>
     </div>
 
+    <!-- Game Over Screen -->
+    <div id="gameOverScreen" class="menu-screen hidden">
+        <div class="menu-container">
+            <div class="menu-header">
+                <h1 class="menu-title" id="gameOverTitle">GAME OVER!</h1>
+            </div>
+
+            <div class="game-over-stats">
+                <div class="stat-row">
+                    <span>Final Score:</span>
+                    <span id="finalScore">0 - 0</span>
+                </div>
+                <div class="stat-row">
+                    <span>Winner:</span>
+                    <span id="winner">YOU WIN! 🎉</span>
+                </div>
+                <div class="stat-row">
+                    <span>Rallies:</span>
+                    <span id="rallies">0</span>
+                </div>
+            </div>
+
+            <div class="menu-buttons">
+                <button class="menu-btn" id="playAgainBtn">🔄 PLAY AGAIN</button>
+                <button class="menu-btn" id="mainMenuFromGameBtn">🏠 MAIN MENU</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Audio Context (for generating sounds) -->
+    <script src="audio.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
